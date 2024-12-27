@@ -120,7 +120,9 @@ PostDown = ${WG_POST_DOWN}
 [Peer]
 PublicKey = ${client.publicKey}
 ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
-}AllowedIPs = ${client.address}/32`;
+}${client.endpoint ? `Endpoint = ${client.endpoint}\n` : ''
+}${client.persistentKeepalive ? `PersistentKeepalive = ${client.persistentKeepalive}\n` : ''
+}AllowedIPs = ${client.allowedIPs ? client.allowedIPs : client.address + '/32'}`;
     }
 
     debug('Config saving...');
